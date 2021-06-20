@@ -1,0 +1,34 @@
+{
+  "name": "trello-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/babchukbohdan/trello-backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/babchukbohdan/trello-backend/issues"
+  },
+  "homepage": "https://github.com/babchukbohdan/trello-backend#readme",
+  "dependencies": {
+    "@hapi/basic": "^6.0.0",
+    "@hapi/bell": "^12.2.0",
+    "@hapi/boom": "^9.1.2",
+    "@hapi/cookie": "^11.0.2",
+    "@hapi/hapi": "^20.1.4",
+    "@hapi/inert": "^6.0.3",
+    "@hapi/vision": "^6.1.0",
+    "handlebars": "^4.7.7",
+    "hapi-geo-locate": "^4.1.1",
+    "mysql2": "^2.2.5",
+    "nodemon": "^2.0.7",
+    "sequelize": "^6.6.2"
+  }
+}
