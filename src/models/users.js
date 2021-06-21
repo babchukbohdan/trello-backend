@@ -1,9 +1,7 @@
-const Connection = require('../dbconfig')
+const { sequelize } = require('../dbconfig')
 const { DataTypes } = require('sequelize')
 
-const dbConnection = Connection.connect
-
-const Users = dbConnection.define(
+const Users = sequelize.define(
   'users',
   {
     user_id: {
@@ -19,16 +17,23 @@ const Users = dbConnection.define(
     }
   },
   {
-    freezeTableName: true,
     timestamps: false
   }
 )
 
-module.exports.createUser = (username, password) => {
-  Users.create({
-    username,
-    password
-  }).then(data => {
-    console.log(data.toJSON());
-  })
+module.exports = {
+  createUser: (username, password) => {
+    Users.create({
+      username,
+      password
+    }).then(data => {
+      console.log(data.toJSON());
+    })
+  },
+  getAllUsers: async () => {
+    let users = await Users.findAll()
+    users = users.map(user => user.dataValues)
+    return users
+  },
+  Users
 }
