@@ -1,5 +1,6 @@
 'use strict';
 
+const dotenv = require('dotenv')
 const Hapi = require('@hapi/hapi')
 const Boom = require('@hapi/boom')
 const Graphi = require('graphi')
@@ -8,6 +9,9 @@ const schema = require('./schema')
 const resolvers = require('./resolvers')
 
 const { sequelize } = require('./dbconfig')
+
+dotenv.config()
+console.log(process.argv);
 
 const init = async () => {
   const server = Hapi.Server({
@@ -29,7 +33,7 @@ const init = async () => {
       method: 'GET',
       path: '/',
       handler: (request, h) => {
-        // console.log(request);
+        return 'Hello World'
       },
       options: {
 
@@ -48,7 +52,7 @@ const init = async () => {
       // force: true,
       // alter: true,
     };
-    await sequelize.sync(options);
+    // await sequelize.sync(options);
   } catch (error) {
     console.error('Unable to connect to the database:', error);
   }
