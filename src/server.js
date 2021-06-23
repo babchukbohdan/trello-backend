@@ -1,14 +1,15 @@
 'use strict';
 
 const dotenv = require('dotenv')
-const Hapi = require('@hapi/hapi')
-const Boom = require('@hapi/boom')
 const Graphi = require('graphi')
 
-const schema = require('./schema')
-const resolvers = require('./resolvers')
+const Hapi = require('@hapi/hapi')
+const Boom = require('@hapi/boom')
 
-const { sequelize } = require('./dbconfig')
+const schema = require('./graphql/schema')
+const resolvers = require('./graphql/resolvers')
+
+const { sequelize } = require('./db/dbconfig')
 
 dotenv.config()
 console.log(process.argv);
@@ -49,10 +50,10 @@ const init = async () => {
     console.log('Connection has been established successfully.');
 
     const options = {
-      // force: true,
+      force: true,
       // alter: true,
     };
-    // await sequelize.sync(options);
+    await sequelize.sync(options);
   } catch (error) {
     console.error('Unable to connect to the database:', error);
   }
