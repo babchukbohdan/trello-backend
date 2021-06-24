@@ -2,7 +2,7 @@
 
 const dotenv = require('dotenv')
 const Graphi = require('graphi')
-
+const { ApolloServer, gql } = require('apollo-server-hapi')
 const Hapi = require('@hapi/hapi')
 const Boom = require('@hapi/boom')
 
@@ -13,15 +13,42 @@ const { sequelize } = require('./db/dbconfig')
 
 dotenv.config()
 console.log(process.argv);
+console.log(`process.cwd`, process.cwd())
 
 const init = async () => {
-  const server = Hapi.Server({
+  const server = new ApolloServer({
+    typeDefs: schema,
+    resolvers
+  })
+  await server.start()
+
+  const app = Hapi.Server({
     host: process.env.HOST || 'localhost',
     port: process.env.PORT || 1234,
   })
 
-  await server.register({ plugin: Graphi, options: { schema, resolvers } });
+  await server.applyMiddleware({
+    app
+  })
 
+  await server.installSubscriptionHandlers(app.listener)
+
+  // await server.register({
+  //   plugin: gql,
+  //   options: {
+  //     path: '/graphql',
+  //     graphqlOptions: {
+  //       schema,
+  //       // resolvers
+  //     },
+  //     route: {
+  //       cors: true,
+  //     },
+  //   },
+  // });
+
+
+  // await server.register({ plugin: Graphi, options: { schema, resolvers } });
   // await server.register([
   //   {
   //     plugin: Boom
@@ -29,7 +56,7 @@ const init = async () => {
   // ])
 
 
-  server.route([
+  app.route([
     {
       method: 'GET',
       path: '/',
@@ -43,14 +70,14 @@ const init = async () => {
   ])
 
   try {
-    await server.start();
-    console.log(`Server start on: ${server.info.uri}`);
+    await app.start();
+    console.log(`Server start on: ${app.info.uri}`);
 
     await sequelize.authenticate();
     console.log('Connection has been established successfully.');
 
     const options = {
-      force: true,
+      // force: true,
       // alter: true,
     };
     await sequelize.sync(options);

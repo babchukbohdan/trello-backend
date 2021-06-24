@@ -1,4 +1,4 @@
-const bcrypt = require('bcrypt');
+// const bcrypt = require('bcrypt');
 const { SALT_ROUNDS } = require('../../constants/crypt');
 
 const { createBoardInDb } = require('../../db/models/boards');
@@ -13,11 +13,13 @@ const getUsers = async (args, request) => {
   return users;
 };
 
+// move to each file
+
 const createUser = async (props) => {
   console.log(`props`, props);
   const { input } = props
-  const password = bcrypt.hashSync(input.password, SALT_ROUNDS)
-  const newUser = await createUserInDB({ ...input, password })
+  // const password = bcrypt.hashSync(input.password, SALT_ROUNDS)
+  const newUser = await createUserInDB({ ...input, password: input.password })
   return newUser
 }
 
@@ -55,12 +57,16 @@ const createCardItem = async ({ input }) => {
 
 
 module.exports = {
-  getUsers,
-  createUser,
-  getBoards,
-  createBoard,
-  getCards,
-  createCard,
-  getCardItems,
-  createCardItem
+  Query: {
+    getUsers,
+    getBoards,
+    getCards,
+    getCardItems,
+  },
+  Mutation: {
+    createUser,
+    createBoard,
+    createCard,
+    createCardItem
+  }
 }

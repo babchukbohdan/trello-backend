@@ -1,4 +1,6 @@
-const schema = `
+const { gql } = require("apollo-server-hapi");
+
+const schema = gql`
   type User {
     id: Int!
     username: String!
