@@ -1,6 +1,5 @@
 'use strict';
 
-const dotenv = require('dotenv')
 const Graphi = require('graphi')
 const { ApolloServer, gql } = require('apollo-server-hapi')
 const Hapi = require('@hapi/hapi')
@@ -11,7 +10,8 @@ const resolvers = require('./graphql/resolvers')
 
 const { sequelize } = require('./db/dbconfig')
 
-dotenv.config()
+const { HOST, PORT } = require('./config')
+
 console.log(process.argv);
 console.log(`process.cwd`, process.cwd())
 
@@ -23,8 +23,8 @@ const init = async () => {
   await server.start()
 
   const app = Hapi.Server({
-    host: process.env.HOST || 'localhost',
-    port: process.env.PORT || 1234,
+    host: HOST || 'localhost',
+    port: PORT || 1234,
   })
 
   await server.applyMiddleware({
@@ -75,6 +75,8 @@ const init = async () => {
 
     await sequelize.authenticate();
     console.log('Connection has been established successfully.');
+
+
 
     const options = {
       // force: true,
