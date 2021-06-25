@@ -1,67 +1,9 @@
-const { gql } = require("apollo-server-hapi");
+const User = require('./user')
+const Board = require('./board')
+const Card = require('./card')
+const CardItem = require('./cardItem')
 
-const schema = gql`
-  type User {
-    id: Int!
-    username: String!
-    password: String!
-  }
-
-  type Board {
-    id: Int!
-    title: String!
-    is_visible: Boolean!
-    user_id: Int!
-  }
-
-  type Card {
-    id: Int!
-    title: String!
-    board_id: Int!
-  }
-
-  type CardItem {
-    id: Int!
-    title: String!
-    description: String
-    card_id: Int!
-  }
-
-  input CreateCardItemInput {
-    card_id: Int!
-    title: String!
-    description: String
-  }
-
-  input GetCardItemsInput {
-    card_id: Int!
-  }
-
-  input GetCardsInput {
-    board_id: Int!
-  }
-
-  input CreateCardInput {
-    board_id: Int!
-    title: String!
-  }
-
-  type UserResponse {
-    id: Int
-    username: String
-  }
-
-  input UserInput {
-    username: String!
-    password: String!
-  }
-
-  input BoardInput {
-    user_id: Int!
-    title: String!
-    is_visible: Boolean!
-  }
-
+const Query = `
   type Query {
     getUsers: [UserResponse!]
     getBoards(input: BoardInput): [Board!]
@@ -69,12 +11,13 @@ const schema = gql`
     getCardItems(input: GetCardItemsInput): [CardItem!]
   }
 
+`
+const Mutation = `
   type Mutation {
     createUser(input: UserInput): User
     createBoard(input: BoardInput): Board
     createCard(input: CreateCardInput): Card
     createCardItem(input: CreateCardItemInput): CardItem
   }
-`;
-
-module.exports = schema
+`
+module.exports = [Query, Mutation, User, Board, Card, CardItem]
