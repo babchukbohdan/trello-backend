@@ -3,6 +3,7 @@ module.exports = `
     id: Int!
     title: String!
     boardId: Int!
+    cardItems: [CardItem]
   }
 
   input GetCardsInput {

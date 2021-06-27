@@ -26,7 +26,7 @@ console.log('Models are created')
 
 const options = {
   // force: true,
-  alter: true,
+  // alter: true,
 }
 
 sequelize.sync(options).then(() => {

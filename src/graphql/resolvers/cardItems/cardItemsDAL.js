@@ -1,9 +1,9 @@
 const { CardItem } = require('../../../infrastructure/database')
 
-const getCardItemsByCardId = async ({ id }) => {
+const getCardItemsByCardId = async ({ cardId }) => {
   const cardItems = CardItem.findAll({
     where: {
-      cardId: id,
+      cardId,
     },
     // include: Users
   })

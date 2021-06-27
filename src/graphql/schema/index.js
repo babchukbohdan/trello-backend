@@ -6,7 +6,7 @@ const CardItem = require('./cardItem')
 const Query = `
   type Query {
     getUsers: [UserResponse!]
-    getBoards(input: BoardInput): [Board!]
+    getBoards(input: GetBoardInput): [Board!]
     getCards(input: GetCardsInput): [Card!]
     getCardItems(input: GetCardItemsInput): [CardItem!]
   }

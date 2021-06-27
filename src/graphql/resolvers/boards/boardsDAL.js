@@ -1,11 +1,15 @@
-const { Board } = require('../../../infrastructure/database')
+const { Board, Card, CardItem } = require('../../../infrastructure/database')
 
-const getBoardsByUserId = async ({ id }) => {
-  const boards = Board.findAll({
+const getBoardsByUserId = async ({ userId }) => {
+  const boards = await Board.findAll({
     where: {
-      userId: id,
+      userId,
     },
-    // include: Users
+    include: {
+      model: Card,
+      include: CardItem,
+    },
+    // include: { all: true, nested: true },
   })
   return boards
 }

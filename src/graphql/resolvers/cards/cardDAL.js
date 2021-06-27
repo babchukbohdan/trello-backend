@@ -1,11 +1,11 @@
-const { Card } = require('../../../infrastructure/database')
+const { Card, CardItem } = require('../../../infrastructure/database')
 
-const getCardsByBoardId = async ({ id }) => {
+const getCardsByBoardId = async ({ boardId }) => {
   const cards = Card.findAll({
     where: {
-      boardId: id,
+      boardId,
     },
-    // include: Users
+    include: CardItem,
   })
   return cards
 }

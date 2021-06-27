@@ -6,6 +6,7 @@ const getCards = async (parent, args, context, info) => {
 }
 
 const createCard = async (parent, args, context, info) => {
+  console.log('args Cards', args.input)
   const newCard = await db.createCard(args.input)
   return newCard
 }
