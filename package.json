@@ -30,6 +30,7 @@
     "@hapi/vision": "^6.1.0",
     "apollo-server-hapi": "^2.25.2",
     "bcrypt": "^5.0.1",
+    "cross-env": "^7.0.3",
     "dotenv": "^10.0.0",
     "graphi": "^9.0.0",
     "handlebars": "^4.7.7",

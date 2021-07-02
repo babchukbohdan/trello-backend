@@ -2,8 +2,6 @@
 
 const { ApolloServer } = require('apollo-server-hapi')
 const Hapi = require('@hapi/hapi')
-const Boom = require('@hapi/boom')
-const { sequelize } = require('./infrastructure/database')
 
 const schema = require('./graphql/schema')
 const resolvers = require('./graphql/resolvers')
@@ -31,6 +29,7 @@ const init = async () => {
 
   await server.installSubscriptionHandlers(app.listener)
 
+  // array in routes/index.js
   app.route([
     {
       method: 'GET',

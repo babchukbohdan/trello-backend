@@ -1,6 +1,6 @@
 const { Board, Card, CardItem } = require('../../../infrastructure/database')
 
-const getBoardsByUserId = async ({ userId }) => {
+const getBoards = async (userId) => {
   const boards = await Board.findAll({
     where: {
       userId,
@@ -23,4 +23,4 @@ const createBoard = async (props) => {
   return newBoard
 }
 
-module.exports = { getBoardsByUserId, createBoard }
+module.exports = { getBoards, createBoard }

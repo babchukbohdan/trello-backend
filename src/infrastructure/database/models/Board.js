@@ -10,6 +10,13 @@ module.exports = (sequelize) => {
         primaryKey: true,
         autoIncrement: true,
       },
+      userId: {
+        type: DataTypes.INTEGER,
+        references: {
+          key: 'id',
+          model: sequelize.models.user,
+        },
+      },
       title: {
         type: DataTypes.STRING,
       },

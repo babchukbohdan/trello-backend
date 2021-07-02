@@ -3,6 +3,7 @@ module.exports = `
     id: Int!
     title: String!
     boardId: Int!
+    order: Int!
     cardItems: [CardItem]
   }
 
@@ -13,5 +14,6 @@ module.exports = `
   input CreateCardInput {
     boardId: Int!
     title: String!
+    order: Int!
   }
 `

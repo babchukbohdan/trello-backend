@@ -1,12 +1,12 @@
 const db = require('./cardItemsDAL')
 
-const getCardItems = async (parent, args, context, info) => {
-  const boardCards = await db.getCardItemsByCardId(args.input)
+const getCardItems = async (cardId) => {
+  const boardCards = await db.getCardItems(cardId)
   return boardCards
 }
 
-const createCardItem = async (parent, args, context, info) => {
-  const newCard = await db.createCardItem(args.input)
+const createCardItem = async (props) => {
+  const newCard = await db.createCardItem(props)
   return newCard
 }
 

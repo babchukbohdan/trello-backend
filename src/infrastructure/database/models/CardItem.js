@@ -10,12 +10,22 @@ module.exports = (sequelize) => {
         primaryKey: true,
         autoIncrement: true,
       },
+      cardId: {
+        type: DataTypes.INTEGER,
+        references: {
+          key: 'id',
+          model: sequelize.models.card,
+        },
+      },
       title: {
         type: DataTypes.STRING,
         allowNull: false,
       },
       description: {
         type: DataTypes.STRING,
+      },
+      order: {
+        type: DataTypes.INTEGER,
       },
     },
     {
@@ -26,3 +36,6 @@ module.exports = (sequelize) => {
 
   return CardItem
 }
+
+// add foreigh key to all models
+// add order to draggable components

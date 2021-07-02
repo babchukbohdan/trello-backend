@@ -1,17 +1,16 @@
 const db = require('./usersDAL')
 
-const getUsers = async (parent, args, context, info) => {
-  let users = await db.getAllUsers()
+const getUsers = async () => {
+  let users = await db.getUsers()
 
   return users
 }
 
 // move to each file
 
-const createUser = async (parent, args, context, info) => {
+const createUser = async (username, password) => {
   // const password = bcrypt.hashSync(input.password, SALT_ROUNDS)
-  const { input } = args
-  const newUser = await db.createUser(input)
+  const newUser = await db.createUser(username, password)
 
   return newUser
 }

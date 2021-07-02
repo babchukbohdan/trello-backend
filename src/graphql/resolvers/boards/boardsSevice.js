@@ -1,12 +1,12 @@
 const db = require('./boardsDAL')
 
-const getBoards = async (parent, args, context, info) => {
-  const userBoards = await db.getBoardsByUserId(args.input)
+const getBoards = async (userId) => {
+  const userBoards = await db.getBoards(userId)
   return userBoards
 }
 
-const createBoard = async (parent, args, context, info) => {
-  const newBoard = await db.createBoard(args.input)
+const createBoard = async (props) => {
+  const newBoard = await db.createBoard(props)
   return newBoard
 }
 

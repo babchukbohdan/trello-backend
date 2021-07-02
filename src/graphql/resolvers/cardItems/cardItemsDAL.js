@@ -1,6 +1,6 @@
 const { CardItem } = require('../../../infrastructure/database')
 
-const getCardItemsByCardId = async ({ cardId }) => {
+const getCardItems = async (cardId) => {
   const cardItems = CardItem.findAll({
     where: {
       cardId,
@@ -19,4 +19,4 @@ const createCardItem = async (props) => {
   return newCardItem
 }
 
-module.exports = { getCardItemsByCardId, createCardItem }
+module.exports = { getCardItems, createCardItem }

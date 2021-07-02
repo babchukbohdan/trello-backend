@@ -1,7 +1,7 @@
-const { createUser, getUsers } = require('./users/usersService')
-const { createBoard, getBoards } = require('./boards/boardsSevice')
-const { createCard, getCards } = require('./cards/cardServices')
-const { createCardItem, getCardItems } = require('./cardItems/cardItemsService')
+const { createUser, getUsers } = require('./users')
+const { createBoard, getBoards } = require('./boards')
+const { createCard, getCards } = require('./cards')
+const { createCardItem, getCardItems } = require('./cardItems')
 
 module.exports = {
   Query: {

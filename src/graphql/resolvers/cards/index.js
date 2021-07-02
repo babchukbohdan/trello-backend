@@ -1,13 +1,13 @@
-const db = require('./cardDAL')
+const service = require('./cardService')
 
 const getCards = async (parent, args, context, info) => {
-  const boardCards = await db.getCardsByBoardId(args.input)
+  const { boardId } = args.input
+  const boardCards = await service.getCards(boardId)
   return boardCards
 }
 
 const createCard = async (parent, args, context, info) => {
-  console.log('args Cards', args.input)
-  const newCard = await db.createCard(args.input)
+  const newCard = await service.createCard(args.input)
   return newCard
 }
 

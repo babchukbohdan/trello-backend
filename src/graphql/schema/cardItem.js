@@ -1,9 +1,10 @@
 module.exports = `
   type CardItem {
     id: Int!
+    cardId: Int!
     title: String!
     description: String
-    cardId: Int!
+    order: Int!
   }
 
   input CreateCardItemInput {
@@ -14,5 +15,6 @@ module.exports = `
 
   input GetCardItemsInput {
     cardId: Int!
+    order: Int!
   }
 `

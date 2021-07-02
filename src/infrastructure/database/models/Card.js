@@ -10,8 +10,18 @@ module.exports = (sequelize) => {
         primaryKey: true,
         autoIncrement: true,
       },
+      boardId: {
+        type: DataTypes.INTEGER,
+        references: {
+          key: 'id',
+          model: sequelize.models.board,
+        },
+      },
       title: {
         type: DataTypes.STRING,
+      },
+      order: {
+        type: DataTypes.INTEGER,
       },
     },
     {
